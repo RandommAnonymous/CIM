@@ -12,20 +12,6 @@ def read_json(fname):
     with fname.open('rt') as handle:
         return json.load(handle)
 
-def load_msrvtt_dataset(data_path='data/msrvtt_ret/msrvtt_test.json'):
-    data = read_json(data_path)
-    full_texts = {}
-    video_ids = []
-    for i in range(len(data)):
-        video_name, total_frames, captions = data[i]
-        video_id = video_name[:video_name.find('.')]
-        full_texts[video_id] = captions
-        video_ids.append(video_id)
-    index_to_texts = {}
-    for i in range(len(video_ids)):
-        video_id = video_ids[i]
-        index_to_texts[i] = (video_id, full_texts[video_id])
-    return index_to_texts
 
 def get_conjunctions(singular_captions, human_caption):
     singular = human_caption in singular_captions
